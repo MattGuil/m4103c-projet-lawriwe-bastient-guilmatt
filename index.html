@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+	<head>
+		<title>M4103C-Projet-JS - Recherche d'offres d'emploi</title>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon-js.ico">
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header>
+			<h1>Recherche d'offres d'emploi</h1>
+
+			<p id="explication">Cette page permet de rechercher des offres d'emploi via l'API publique de <a href="https://www.indeed.fr/" target="_blank">indeed.fr</a>.<br>
+			Saisir le nom d'une ville, d'un poste, ... pour rechercher les postes correspondants, et enregistrer vos recherches favorites pour les retrouver facilement.</p>
+		</header>
+		<hr>
+
+		<main id="conteneur">
+			<!-- Section de recherche (avec résultats) -->
+			<section id="section-recherche">
+				<div id="bloc-recherche">
+					<!-- Champ de recherche -->
+					<input type="text" placeholder="Que cherchez-vous ?" />
+
+					<!-- Boutons -->
+					<button id="btn-lancer-recherche" type="button"
+					class="btn_clicable" title="Lancer la recherche">
+						<!-- Icone provenant de flaticon.com -->
+						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
+					</button>
+
+					<button id="btn-favoris" type="button" disabled
+					title="Ajouter la recherche aux favoris">
+						<!-- Icone étoile vide => Recherche pas en favoris -->
+						<img src="images/etoile-vide.svg" alt="Etoile vide" width=22 >
+
+						<!-- Icone étoile pleine => Recherche en favoris -->
+						<!-- <img src="images/etoile-pleine.svg" alt="Etoile pleine" width=22 > -->
+
+						<!-- (Icones provenant de flaticon.com) -->
+					</button>
+				</div>
+
+				<!-- Résultats de recherche -->
+				<div id="bloc-gif-attente">
+					<img src='images/attente-ajax.gif' alt="GIF Attente de résultats" width=50 />
+				</div>
+				<div id="bloc-resultats">
+					<p class="res">Résultat 1 ...</p>
+					<p class="res">Résultat 2 ...</p>
+					<p class="res">Résultat 3 ...</p>
+					<p class="info-vide">( &empty; Aucun résultat trouvé )</p>
+				</div>
+			</section>
+
+			<!-- Section de séparation (avec la bordure verte) -->
+			<section id="section-separation"></section>
+
+			<!-- Section des recherches favorites -->
+			<section id="section-favoris">
+				<h2>Recherches favorites</h2>
+				<p>Cliquer sur une recherche favorite ci-dessus pour relancer celle-ci :</p>
+				<ul id="liste-favoris">
+					<li>
+						<span title="Cliquer pour relancer la recherche">Grenoble</span>
+						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
+					</li>
+					<li>
+						<span title="Cliquer pour relancer la recherche">Lyon</span>
+						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
+					</li>
+					<li>
+						<span title="Cliquer pour relancer la recherhe.">Web</span>
+						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
+					</li>
+				</ul>
+				<p class="info-vide">( &empty; Aucune recherche enregistrée )</p>
+			</section>
+
+		</main>
+
+	</body>
+</html>
+
