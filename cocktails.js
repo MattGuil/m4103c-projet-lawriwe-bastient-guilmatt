@@ -21,6 +21,8 @@ function rab(){
 
 
 function maj_resultat(){
+	//var obj = JSON.parse(res);
+	// v0 : affiche new text achaque clic (fait)
 	// v1 : affiche juste un cocktail de base
 	// v2 (existe pas encore) : affiche la liste des cocktails concerné par l'ingrédients
 	var bloc_resultats = document.getElementById('bloc_resultats');
@@ -28,6 +30,7 @@ function maj_resultat(){
 	let p = document.createElement("p")
 	p.innerHTML = "New text!";
 	bloc_resultats.append(p)	
+	
 	
 }
 
