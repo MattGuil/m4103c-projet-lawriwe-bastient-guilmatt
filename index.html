@@ -20,7 +20,7 @@
 			<section id="section-recherche">
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input type="text" placeholder="Que cherchez-vous ?" />
+					<input id="search-bar" type="text" placeholder="Que cherchez-vous ?" onkeyup="searching()"/>
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
@@ -29,8 +29,8 @@
 						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
 					</button>
 
-					<button id="btn-favoris" type="button" disabled
-					title="Ajouter la recherche aux favoris">
+					<button id="btn-favoris" type="button"
+					title="Ajouter la recherche aux favoris" onclick="addFav()">
 						<!-- Icone étoile vide => Recherche pas en favoris -->
 						<img src="images/etoile-vide.svg" alt="Etoile vide" width=22 >
 

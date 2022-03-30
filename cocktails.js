@@ -1,3 +1,5 @@
+const searchBar = document.querySelector("#search-bar");
+const btnFavoris = document.querySelector("#btn-favoris");
 
 function recherche(request){
 
@@ -6,13 +8,21 @@ function recherche(request){
 	
 }
 
-
 function maj_resultat(res){
 
 }
 
+function searching() {
+	if(searchBar.value != "") {
+		btnFavoris.classList.add("btn_clicable");
+	} else {
+		btnFavoris.classList.remove("btn_clicable");
+	}
+}
 
-
+function addFav() {
+	console.log("Favori ajouté !");
+}
 
 // pour l'instant sa sert a rien
 function ajax_get_request(callback, url, async = true) {
