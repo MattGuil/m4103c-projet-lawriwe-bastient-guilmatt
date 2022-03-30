@@ -1,14 +1,34 @@
 
 function recherche(request){
-
+	maj_resultat()
 	let Encdata = encodeURIComponent(data);
 	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+request);
 	
+
+
+
+
+
 }
 
 
-function maj_resultat(res){
+function rab(){
 
+    var bloc_resultats = document.getElementById('bloc_resultats');
+    bloc_resultats.value = "";
+
+}
+
+
+function maj_resultat(){
+	// v1 : affiche juste un cocktail de base
+	// v2 (existe pas encore) : affiche la liste des cocktails concerné par l'ingrédients
+	var bloc_resultats = document.getElementById('bloc_resultats');
+
+	let p = document.createElement("p")
+	p.innerHTML = "New text!";
+	bloc_resultats.append(p)	
+	
 }
 
 
