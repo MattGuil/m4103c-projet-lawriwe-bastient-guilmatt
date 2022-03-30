@@ -1,15 +1,40 @@
 const searchBar = document.querySelector("#search-bar");
 const btnFavoris = document.querySelector("#btn-favoris");
 
-function recherche(request){
+function recherche(){
+	let request = document.getElementById("zone_recherche").value;
+	let EncRequest = encodeURIComponent(request);
+	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+EncRequest);
 
-	let Encdata = encodeURIComponent(data);
-	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+request);
+}
+
+
+function rab(){
+
+    var bloc_resultats = document.getElementById('bloc_resultats');
+    bloc_resultats.value = "";
 	
 }
 
 function maj_resultat(res){
 
+	// v0 : affiche new text achaque clic (fait)
+	// v1 : affiche juste un cocktail de base
+	// v2 (existe pas encore) : affiche la liste des cocktails concerné par l'ingrédients
+	var obj = JSON.parse(res);
+	var bloc_resultats = document.getElementById('bloc_resultats');
+
+	// boucle a ajouter ensuite
+
+
+	let p = document.createElement("p")
+	p.innerHTML = obj["drinks"][0].strDrink;
+
+
+
+	bloc_resultats.append(p)	
+	
+	
 }
 
 function searching() {

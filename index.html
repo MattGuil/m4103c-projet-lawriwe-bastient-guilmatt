@@ -24,7 +24,7 @@
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
-					class="btn_clicable" title="Lancer la recherche">
+					class="btn_clicable" title="Lancer la recherche" onclick="recherche()">
 						<!-- Icone provenant de flaticon.com -->
 						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
 					</button>
@@ -45,11 +45,14 @@
 				<div id="bloc-gif-attente">
 					<img src='images/attente-ajax.gif' alt="GIF Attente de résultats" width=50 />
 				</div>
-				<div id="bloc-resultats">
-					<p class="res">ça marche</p>
-					<p class="res">Résultat 2 ...</p>
-					<p class="res">Résultat 3 ...</p>
-					<p class="info-vide">( &empty; Aucun résultat trouvé )</p>
+				<div id="bloc_resultats">
+
+
+
+					<!-- s'est ICI que les résultat vont s'afficher (voir fonction maj_résultat) -->
+
+
+
 				</div>
 			</section>
 
