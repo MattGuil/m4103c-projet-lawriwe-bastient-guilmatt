@@ -7,8 +7,27 @@ function recherche(){
 }
 
 
-function maj_resultat(res){
+function rab(){
 
+    var bloc_resultats = document.getElementById('bloc_resultats');
+    bloc_resultats.value = "";
+	res = JSON.parse(res);
+	document.getElementById("res1").value = res["drinks"][0].strDrink;
+	
+}
+
+
+function maj_resultat(){
+	//var obj = JSON.parse(res);
+	// v0 : affiche new text achaque clic (fait)
+	// v1 : affiche juste un cocktail de base
+	// v2 (existe pas encore) : affiche la liste des cocktails concerné par l'ingrédients
+	var bloc_resultats = document.getElementById('bloc_resultats');
+
+	let p = document.createElement("p")
+	p.innerHTML = "New text!";
+	bloc_resultats.append(p)	
+	
 	
 }
 
