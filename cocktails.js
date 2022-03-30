@@ -1,4 +1,17 @@
- 
+
+function recherche(request){
+
+	let Encdata = encodeURIComponent(data);
+	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+request);
+	
+}
+
+
+function maj_resultat(res){
+
+}
+
+
 
 
 // pour l'instant sa sert a rien
