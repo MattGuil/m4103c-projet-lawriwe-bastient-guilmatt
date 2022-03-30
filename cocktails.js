@@ -29,10 +29,7 @@ function maj_resultat(res){
 	let p = document.createElement("p")
 	p.innerHTML = obj["drinks"][0].strDrink;
 
-
-
 	bloc_resultats.append(p)	
-	
 	
 }
 
