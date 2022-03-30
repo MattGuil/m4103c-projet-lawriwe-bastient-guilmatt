@@ -1,14 +1,15 @@
 
-function recherche(request){
+function recherche(){
+	let request = document.getElementById("zone_recherche").value;
+	let EncRequest = encodeURIComponent(request);
+	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+EncRequest);
 
-	let Encdata = encodeURIComponent(data);
-	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+request);
-	
 }
 
 
 function maj_resultat(res){
 
+	
 }
 
 
