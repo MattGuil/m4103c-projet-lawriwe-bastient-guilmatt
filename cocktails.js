@@ -1,13 +1,18 @@
-const searchBar = document.querySelector("#search-bar");
+const zone_recherche = document.querySelector("#search-bar");
 const btnFavoris = document.querySelector("#btn-favoris");
+const listeFavoris = document.querySelector("#liste-favoris");
+const infoVide = document.querySelector(".info-vide");
+
+searching();
+maj_etat_favoris();
 
 function recherche(){
-	let request = document.getElementById("zone_recherche").value;
+	let request = zone_recherche.value;
 	let EncRequest = encodeURIComponent(request);
 	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+EncRequest);
 
+	console.log("Recherche !")
 }
-
 
 function rab(){
 
@@ -37,16 +42,63 @@ function maj_resultat(res){
 	
 }
 
-function searching() {
-	if(searchBar.value != "") {
-		btnFavoris.classList.add("btn_clicable");
+function maj_etat_favoris() {
+	if(listeFavoris.children.length == 0) {
+		infoVide.style.visibility = "visible";
+		console.log("liste favoris vide");
 	} else {
+		infoVide.style.visibility = "hidden";
+		console.log("liste favoris non vide");
+	}
+}
+
+function searching() {
+	if(zone_recherche.value == "") {
 		btnFavoris.classList.remove("btn_clicable");
+	} else {
+		btnFavoris.classList.add("btn_clicable");
 	}
 }
 
 function addFav() {
+	const favoriItem = document.createElement("li");
+
+	const favoriSpan = document.createElement("span");
+	favoriSpan.setAttribute("title", "Cliquer pour relancer la recherche");
+	favoriSpan.append(zone_recherche.value);
+	favoriSpan.setAttribute("onclick", "searchFav(this)");
+	
+	const favoriImg = document.createElement("img");
+	favoriImg.setAttribute("src", "images/croix.svg");
+	favoriImg.setAttribute("alt", "Icone pour supprimer le favori");
+	favoriImg.setAttribute("width", "15");
+	favoriImg.setAttribute("title", "Cliquer pour supprimer le favori");
+	favoriImg.setAttribute("onclick", "removeFav(this)");
+	
+	favoriItem.appendChild(favoriSpan);
+	favoriItem.appendChild(favoriImg);
+	
+	listeFavoris.appendChild(favoriItem);
+
+	maj_etat_favoris();
+
+	const cookieName = "fav" + listeFavoris.children.length.toString();
+	setCookie(cookieName, zone_recherche.value);
+	
 	console.log("Favori ajouté !");
+}
+
+function searchFav(fav) {
+	zone_recherche.value = fav.innerHTML;
+	recherche();
+}
+
+function removeFav(fav) {
+	listeFavoris.removeChild(fav.parentNode);
+
+	maj_etat_favoris();
+
+	console.log("Favori supprimé !");
 }
 
 // pour l'instant sa sert a rien
