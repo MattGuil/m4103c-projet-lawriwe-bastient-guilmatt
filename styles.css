@@ -165,3 +165,26 @@ p#explication {
 		flex: 0;
 	}
 }
+
+
+
+/*Pour le popup de la bar de recherche*/
+
+
+.popuptext{
+	visibility: hidden;
+	width: 400px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	position: absolute;
+	top:55%;
+	left: 100px;
+}
+
+.show{
+	visibility: visible;
+}
+
+/*------------------------------------*/

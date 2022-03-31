@@ -1,10 +1,25 @@
-const searchBar = document.querySelector("#search-bar");
+const searchBar = document.querySelector("#zone_recherche");
 const btnFavoris = document.querySelector("#btn-favoris");
+var notIngrePop = document.getElementById("NotIngre");
+
+searchBar.addEventListener("keydown", function(event){
+	//13 est le numéro de "Entrer"
+	if (event.keyCode === 13) {
+		// Cancel the default action, if needed
+		// Cancel the default action, if needed
+		event.preventDefault();
+		recherche();
+	}
+});
 
 function recherche(){
+
+	notIngrePop.classList.remove("show");
 	let request = document.getElementById("zone_recherche").value;
 	let EncRequest = encodeURIComponent(request);
 	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+EncRequest);
+
+	
 
 }
 
@@ -21,16 +36,23 @@ function maj_resultat(res){
 	// v0 : affiche new text achaque clic (fait)
 	// v1 : affiche juste un cocktail de base
 	// v2 (existe pas encore) : affiche la liste des cocktails concerné par l'ingrédients
-	var obj = JSON.parse(res);
-	var bloc_resultats = document.getElementById('bloc_resultats');
+	try{
+		var obj = JSON.parse(res);
+		var bloc_resultats = document.getElementById('bloc_resultats');
 
-	// boucle a ajouter ensuite
+		// boucle a ajouter ensuite
 
 
-	let p = document.createElement("p")
-	p.innerHTML = obj["drinks"][0].strDrink;
+		let p = document.createElement("p")
+		p.innerHTML = obj["drinks"][0].strDrink;
 
-	bloc_resultats.append(p)	
+		bloc_resultats.append(p)	
+	}catch(error){
+		
+		notIngrePop.classList.add("show");
+	}
+	
+	
 	
 }
 
@@ -46,7 +68,7 @@ function addFav() {
 	console.log("Favori ajouté !");
 }
 
-// pour l'instant sa sert a rien
+
 function ajax_get_request(callback, url, async = true) {
 	// Instanciation d'un objet XHR
 	var xhr = new XMLHttpRequest();
