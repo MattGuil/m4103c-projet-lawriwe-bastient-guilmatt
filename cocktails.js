@@ -7,7 +7,7 @@ var notIngrePop = document.querySelector("#NotIngre");
 searching();
 maj_etat_favoris();
 
-searchBar.addEventListener("keydown", function(event){
+zone_recherche.addEventListener("keydown", function(event){
 	//13 est le numéro de "Entrer"
 	if (event.keyCode === 13) {
 		// Annule le comportement par défaut
