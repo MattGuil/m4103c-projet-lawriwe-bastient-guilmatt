@@ -10,8 +10,7 @@ maj_etat_favoris();
 searchBar.addEventListener("keydown", function(event){
 	//13 est le numéro de "Entrer"
 	if (event.keyCode === 13) {
-		// Cancel the default action, if needed
-		// Cancel the default action, if needed
+		// Annule le comportement par défaut
 		event.preventDefault();
 		recherche();
 	}
