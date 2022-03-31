@@ -166,6 +166,9 @@ p#explication {
 	}
 }
 
+.remarque{
+	opacity: 50%;
+}
 
 
 /*Pour le popup de la bar de recherche*/
@@ -179,7 +182,7 @@ p#explication {
 	text-align: center;
 	border-radius: 6px;
 	position: absolute;
-	top:55%;
+	top:62%;
 	left: 100px;
 }
 
