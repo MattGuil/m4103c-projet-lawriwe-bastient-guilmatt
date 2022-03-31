@@ -1,24 +1,38 @@
-const zone_recherche = document.querySelector("#search-bar");
+const zone_recherche = document.querySelector("#zone_recherche");
 const btnFavoris = document.querySelector("#btn-favoris");
 const listeFavoris = document.querySelector("#liste-favoris");
 const infoVide = document.querySelector(".info-vide");
+var notIngrePop = document.querySelector("#NotIngre");
 
 searching();
 maj_etat_favoris();
 
+searchBar.addEventListener("keydown", function(event){
+	//13 est le numéro de "Entrer"
+	if (event.keyCode === 13) {
+		// Cancel the default action, if needed
+		// Cancel the default action, if needed
+		event.preventDefault();
+		recherche();
+	}
+});
+
 function recherche(){
-	let request = zone_recherche.value;
+
+	notIngrePop.classList.remove("show");
+	let request = document.getElementById("zone_recherche").value;
 	let EncRequest = encodeURIComponent(request);
 	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+EncRequest);
 
-	console.log("Recherche !")
+
+
 }
 
 function rab(){
 
     var bloc_resultats = document.getElementById('bloc_resultats');
     bloc_resultats.value = "";
-	
+
 }
 
 function maj_resultat(res){
@@ -26,20 +40,24 @@ function maj_resultat(res){
 	// v0 : affiche new text achaque clic (fait)
 	// v1 : affiche juste un cocktail de base
 	// v2 (existe pas encore) : affiche la liste des cocktails concerné par l'ingrédients
-	var obj = JSON.parse(res);
-	var bloc_resultats = document.getElementById('bloc_resultats');
+	try{
+		var obj = JSON.parse(res);
+		var bloc_resultats = document.getElementById('bloc_resultats');
 
-	// boucle a ajouter ensuite
-
-
-	let p = document.createElement("p")
-	p.innerHTML = obj["drinks"][0].strDrink;
+		// boucle a ajouter ensuite
 
 
+		let p = document.createElement("p")
+		p.innerHTML = obj["drinks"][0].strDrink;
 
-	bloc_resultats.append(p)	
-	
-	
+		bloc_resultats.append(p)
+	}catch(error){
+
+		notIngrePop.classList.add("show");
+	}
+
+
+
 }
 
 function maj_etat_favoris() {
@@ -67,24 +85,24 @@ function addFav() {
 	favoriSpan.setAttribute("title", "Cliquer pour relancer la recherche");
 	favoriSpan.append(zone_recherche.value);
 	favoriSpan.setAttribute("onclick", "searchFav(this)");
-	
+
 	const favoriImg = document.createElement("img");
 	favoriImg.setAttribute("src", "images/croix.svg");
 	favoriImg.setAttribute("alt", "Icone pour supprimer le favori");
 	favoriImg.setAttribute("width", "15");
 	favoriImg.setAttribute("title", "Cliquer pour supprimer le favori");
 	favoriImg.setAttribute("onclick", "removeFav(this)");
-	
+
 	favoriItem.appendChild(favoriSpan);
 	favoriItem.appendChild(favoriImg);
-	
+
 	listeFavoris.appendChild(favoriItem);
 
 	maj_etat_favoris();
 
 	const cookieName = "fav" + listeFavoris.children.length.toString();
 	setCookie(cookieName, zone_recherche.value);
-	
+
 	console.log("Favori ajouté !");
 }
 
