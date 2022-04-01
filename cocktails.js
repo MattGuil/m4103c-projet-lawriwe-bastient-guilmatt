@@ -37,20 +37,40 @@ function rab(){
 function maj_resultat(res){
 
 	// v0 : affiche new text achaque clic (fait)
-	// v1 : affiche juste un cocktail de base
-	// v2 (existe pas encore) : affiche la liste des cocktails concerné par l'ingrédients
+	// v1 : affiche juste un cocktail de base (fait)
+	// v2 affiche la liste des cocktails concerné par l'ingrédients (fait)
+	// v3 (existe pas encore) : affiche liste des ingédients par cocktails
 	try{
 		var obj = JSON.parse(res);
 		var bloc_resultats = document.getElementById('bloc_resultats');
 
-		// boucle a ajouter ensuite
+		for(let i = 0; i < obj["drinks"].length; i++)
+		{
+
+		let div = document.createElement("div");
+
+		let h3 = document.createElement("h3");
+		h3.innerHTML = obj["drinks"][i].strDrink;
+
+		let img = document.createElement("img");
+		img.src = obj["drinks"][i].strDrinkThumb;
+
+		div.append(h3);
+		div.append(img);
+
+			// possible boucle pour afficher ingrédients
+
+
+
+
+
+
+
+		bloc_resultats.append(div);
+		}
+
 
 		
-
-		let p = document.createElement("p")
-		p.innerHTML = obj["drinks"][0].strDrink;
-
-		bloc_resultats.append(p)
 	}catch(error){
 
 		notIngrePop.classList.add("show");
