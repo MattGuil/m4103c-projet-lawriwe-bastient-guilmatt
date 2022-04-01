@@ -27,6 +27,15 @@ function recherche(){
 
 }
 
+
+// pour avoir plus d'info sur un cocktail d'on on a déja l'id'
+function recherche_suplementaire_cocktails(id){
+	//notIngrePop.classList.remove("show");
+	//let request = document.getElementById("id_cocktail").innerHTML;
+	let EncRequest = encodeURIComponent(id);
+	ajax_get_request(maj_resultat_ingredients,"www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+EncRequest);
+}
+
 function rab(){
 
     var bloc_resultats = document.getElementById('bloc_resultats');
@@ -52,19 +61,23 @@ function maj_resultat(res){
 	// v1 : affiche juste un cocktail de base (fait)
 	// v2 affiche la liste des cocktails concerné par l'ingrédients (fait)
 	// v3 (existe pas encore) : affiche liste des ingédients par cocktails
-	//try{
+	try{
 		var obj = JSON.parse(res);
 		var bloc_resultats = document.getElementById('bloc_resultats');
 
 		// supréssion des résultats précédents
 		rab();
 
+
+		let div_general = document.createElement("div");
+		div_general.id = "resultat";
+
 		//la boucle
 		for(let i = 0; i < obj["drinks"].length; i++)
 		{
 
 		let div = document.createElement("div");
-		div.id = "resultat";
+		div.id = obj["drinks"][i].idDrink;
 
 		let h3 = document.createElement("h3");
 		h3.innerHTML = obj["drinks"][i].strDrink;
@@ -72,30 +85,56 @@ function maj_resultat(res){
 		let img = document.createElement("img");
 		img.src = obj["drinks"][i].strDrinkThumb;
 
+		let p = document.createElement("p");
+		p.id = "id_cocktail"
+		p.innerHTML = obj["drinks"][i].idDrink;
+
+		
 		div.append(h3);
+		div.append(p);
 		div.append(img);
+		div_general.append(div);
 
-			// possible boucle pour afficher ingrédients
-
-
-
-
+		// pour la liste d'ingredients ATTENTION, NON-FONCTIONNEL probleme dans recherche_suplementaire_cocktails ou maj_resultat_ingredients
+		//recherche_suplementaire_cocktails(obj["drinks"][i].idDrink)
 
 
 
-		bloc_resultats.append(div);
+		bloc_resultats.append(div_general);
 		}
 
 
-		/*
+		
 	}catch(error){
 
 		notIngrePop.classList.add("show");
-	}*/
-
-
+	}
 
 }
+
+
+
+
+// ajoute la liste des ingedients dans les résultats
+function maj_resultat_ingredients(res){
+	var obj = JSON.parse(res);
+	// on cherche le div ou on doit injecter la liste des ingedients
+	var div_cible = document.getElementById(obj["drinks"][0].idDrink);
+
+
+	let p = document.createElement("p");
+	p.innerHTML = obj["drinks"][0].strInstructions;
+
+
+	div_cible.append(p)
+
+}
+
+
+
+
+
+
 
 function maj_etat_favoris() {
 	if(listeFavoris.children.length == 0) {
