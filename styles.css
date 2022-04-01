@@ -25,6 +25,7 @@ body {
 /* Paragraphes "Aucun résultat..." et "Aucune recherche..." */
 p.info-vide {
 	font-style: italic;
+	visibility: hidden;
 }
 
 /* Partie En-tête */
@@ -165,3 +166,29 @@ p#explication {
 		flex: 0;
 	}
 }
+
+.remarque{
+	opacity: 50%;
+}
+
+
+/*Pour le popup de la bar de recherche*/
+
+
+.popuptext{
+	visibility: hidden;
+	width: 400px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	position: absolute;
+	top:62%;
+	left: 100px;
+}
+
+.show{
+	visibility: visible;
+}
+
+/*------------------------------------*/

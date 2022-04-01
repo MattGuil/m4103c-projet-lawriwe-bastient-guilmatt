@@ -12,6 +12,8 @@
 
 			<p id="explication">Cette page permet de rechercher des cocktails via l'API publique de <a href="https://www.thecocktaildb.com/" target="_blank">thecocktaildb.com</a>.<br>
 			Saisir le nom d'un ingrédient pour rechercher les cocktails correspondants, et enregistrer vos recherches favorites pour les retrouver facilement.</p>
+			<p class="remarque">Précision : Les ingrédient sont à écrire en anglais je vous prie !</p>
+		
 		</header>
 		<hr>
 
@@ -20,7 +22,8 @@
 			<section id="section-recherche">
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input type="text" placeholder="Que cherchez-vous ?" id="zone_recherche"/>
+					<input id="zone_recherche" type="text" placeholder="Que cherchez-vous ?" onkeyup="searching()"/>
+					<p class="popuptext" id="NotIngre" >Cette ingrédient n'est dans aucune cocktail</p>
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
@@ -29,8 +32,8 @@
 						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
 					</button>
 
-					<button id="btn-favoris" type="button" disabled
-					title="Ajouter la recherche aux favoris">
+					<button id="btn-favoris" type="button"
+					title="Ajouter la recherche aux favoris" onclick="addFav()">
 						<!-- Icone étoile vide => Recherche pas en favoris -->
 						<img src="images/etoile-vide.svg" alt="Etoile vide" width=22 >
 
@@ -64,23 +67,13 @@
 				<h2>Recherches favorites</h2>
 				<p>Cliquer sur une recherche favorite ci-dessus pour relancer celle-ci :</p>
 				<ul id="liste-favoris">
-					<li>
-						<span title="Cliquer pour relancer la recherche">vodka</span>
-						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
-					</li>
-					<li>
-						<span title="Cliquer pour relancer la recherche">rhum</span>
-						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
-					</li>
-					<li>
-						<span title="Cliquer pour relancer la recherhe.">jus d'orange</span>
-						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
-					</li>
+					
 				</ul>
 				<p class="info-vide">( &empty; Aucune recherche enregistrée )</p>
 			</section>
 
 		</main>
+		<script src="cookies.js"></script>
 		<script src="cocktails.js"></script>
 	</body>
 </html>
