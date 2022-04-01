@@ -32,6 +32,18 @@ function rab(){
     var bloc_resultats = document.getElementById('bloc_resultats');
     bloc_resultats.value = "";
 
+
+
+		// pour clear les résultats avant de d'en afficher de nouveaux
+
+	var a_suprimer = document.getElementById('resultat');
+
+		// on vérifie que a_suprimer existe
+	try{
+		a_suprimer.remove();
+	}catch(error){
+		//rien d'arrive si il n'y a rien a suprimer
+	}
 }
 
 function maj_resultat(res){
@@ -40,14 +52,19 @@ function maj_resultat(res){
 	// v1 : affiche juste un cocktail de base (fait)
 	// v2 affiche la liste des cocktails concerné par l'ingrédients (fait)
 	// v3 (existe pas encore) : affiche liste des ingédients par cocktails
-	try{
+	//try{
 		var obj = JSON.parse(res);
 		var bloc_resultats = document.getElementById('bloc_resultats');
 
+		// supréssion des résultats précédents
+		rab();
+
+		//la boucle
 		for(let i = 0; i < obj["drinks"].length; i++)
 		{
 
 		let div = document.createElement("div");
+		div.id = "resultat";
 
 		let h3 = document.createElement("h3");
 		h3.innerHTML = obj["drinks"][i].strDrink;
@@ -70,11 +87,11 @@ function maj_resultat(res){
 		}
 
 
-		
+		/*
 	}catch(error){
 
 		notIngrePop.classList.add("show");
-	}
+	}*/
 
 
 
