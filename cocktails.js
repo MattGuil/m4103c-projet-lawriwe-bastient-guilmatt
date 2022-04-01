@@ -24,11 +24,15 @@ function maj_resultat(res){
 	var bloc_resultats = document.getElementById('bloc_resultats');
 
 	// boucle a ajouter ensuite
+	
 
+	let div = document.createElement("div");
 
-	let p = document.createElement("p")
+	let p = document.createElement("p");
 	p.innerHTML = obj["drinks"][0].strDrink;
 
+	div.append(p);
+	
 
 
 	bloc_resultats.append(p)	
