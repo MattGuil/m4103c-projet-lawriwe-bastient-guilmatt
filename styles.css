@@ -37,6 +37,19 @@ h1 {
 	color: var(--main-green);
 }
 
+ /*partie affichage des résultat*/
+ /*j'utilise des PX mais on pourras passer sur de % si on veut modifier*/
+
+div>img{
+	
+	width: 300px;
+	height: auto;
+}
+
+
+
+
+
 p#explication {
 	font-size: 1.2em;
 }
