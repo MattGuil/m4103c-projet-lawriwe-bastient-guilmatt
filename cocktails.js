@@ -2,10 +2,12 @@ const zone_recherche = document.querySelector("#zone_recherche");
 const btnFavoris = document.querySelector("#btn-favoris");
 const listeFavoris = document.querySelector("#liste-favoris");
 const infoVide = document.querySelector(".info-vide");
+const etoile = document.querySelector("#etoile");
 var notIngrePop = document.querySelector("#NotIngre");
 
+zone_recherche.value = "";
 searching();
-maj_etat_favoris();
+majListeFav("load", "");
 
 zone_recherche.addEventListener("keydown", function(event){
 	//13 est le numéro de "Entrer"
@@ -23,10 +25,7 @@ function recherche(){
 	let EncRequest = encodeURIComponent(request);
 	ajax_get_request(maj_resultat,"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+EncRequest);
 
-
-
 }
-
 
 // pour avoir plus d'info sur un cocktail d'on on a déja l'id'
 function recherche_suplementaire_cocktails(id){
@@ -37,37 +36,32 @@ function recherche_suplementaire_cocktails(id){
 }
 
 function rab(){
+	var bloc_resultats = document.getElementById('bloc_resultats');
+	bloc_resultats.value = "";
 
-    var bloc_resultats = document.getElementById('bloc_resultats');
-    bloc_resultats.value = "";
-
-
-
-		// pour clear les résultats avant de d'en afficher de nouveaux
+	// pour clear les résultats avant de d'en afficher de nouveaux
 
 	var a_suprimer = document.getElementById('resultat');
 
-		// on vérifie que a_suprimer existe
-	try{
+	// on vérifie que a_suprimer existe
+	try {
 		a_suprimer.remove();
-	}catch(error){
+	} catch(error) {
 		//rien d'arrive si il n'y a rien a suprimer
 	}
 }
 
 function maj_resultat(res){
-
 	// v0 : affiche new text achaque clic (fait)
 	// v1 : affiche juste un cocktail de base (fait)
 	// v2 affiche la liste des cocktails concerné par l'ingrédients (fait)
 	// v3 (existe pas encore) : affiche liste des ingédients par cocktails
-	try{
+	try {
 		var obj = JSON.parse(res);
 		var bloc_resultats = document.getElementById('bloc_resultats');
 
 		// supréssion des résultats précédents
 		rab();
-
 
 		let div_general = document.createElement("div");
 		div_general.id = "resultat";
@@ -89,7 +83,6 @@ function maj_resultat(res){
 		p.id = "id_cocktail"
 		p.innerHTML = obj["drinks"][i].idDrink;
 
-		
 		div.append(h3);
 		div.append(p);
 		div.append(img);
@@ -102,47 +95,42 @@ function maj_resultat(res){
 
 		bloc_resultats.append(div_general);
 		}
-
-
-		
-	}catch(error){
-
+	} catch(error) {
 		notIngrePop.classList.add("show");
 	}
-
 }
 
-
-
-
 // ajoute la liste des ingedients dans les résultats
-function maj_resultat_ingredients(res){
+function maj_resultat_ingredients(res) {
 	var obj = JSON.parse(res);
 	// on cherche le div ou on doit injecter la liste des ingedients
 	var div_cible = document.getElementById(obj["drinks"][0].idDrink);
 
-
 	let p = document.createElement("p");
 	p.innerHTML = obj["drinks"][0].strInstructions;
 
-
 	div_cible.append(p)
-
 }
 
-
-
-
-
-
-
-function maj_etat_favoris() {
-	if(listeFavoris.children.length == 0) {
-		infoVide.style.visibility = "visible";
-		console.log("liste favoris vide");
+function majEtoile() {
+	if(localStorage.getItem(zone_recherche.value) == null) {
+		etoile.setAttribute("src", "images/etoile-vide.svg");
+		etoile.setAttribute("alt", "Etoile vide");
 	} else {
-		infoVide.style.visibility = "hidden";
-		console.log("liste favoris non vide");
+		etoile.setAttribute("src", "images/etoile-pleine.svg");
+		etoile.setAttribute("alt", "Etoile pleine");
+	}
+}
+
+function majFav() {
+	if(zone_recherche.value != "") {
+		if(etoile.getAttribute("alt") == "Etoile vide") {
+			addFav(zone_recherche.value);
+			majEtoile();
+		} else {
+			removeFav(zone_recherche.value);
+			majEtoile();
+		}
 	}
 }
 
@@ -151,48 +139,68 @@ function searching() {
 		btnFavoris.classList.remove("btn_clicable");
 	} else {
 		btnFavoris.classList.add("btn_clicable");
+		majEtoile();
 	}
 }
 
-function addFav() {
+function createFavoriItem(favName) {
 	const favoriItem = document.createElement("li");
+	favoriItem.setAttribute("id", favName);
 
 	const favoriSpan = document.createElement("span");
 	favoriSpan.setAttribute("title", "Cliquer pour relancer la recherche");
-	favoriSpan.append(zone_recherche.value);
-	favoriSpan.setAttribute("onclick", "searchFav(this)");
+	favoriSpan.append(favName);
+	favoriSpan.setAttribute("onclick", "searchFav(this.innerHTML)");
 
 	const favoriImg = document.createElement("img");
 	favoriImg.setAttribute("src", "images/croix.svg");
 	favoriImg.setAttribute("alt", "Icone pour supprimer le favori");
 	favoriImg.setAttribute("width", "15");
 	favoriImg.setAttribute("title", "Cliquer pour supprimer le favori");
-	favoriImg.setAttribute("onclick", "removeFav(this)");
+	favoriImg.setAttribute("onclick", "removeFav(this.parentNode.firstChild.innerHTML)");
 
 	favoriItem.appendChild(favoriSpan);
 	favoriItem.appendChild(favoriImg);
 
-	listeFavoris.appendChild(favoriItem);
+	return favoriItem;
+}
 
-	maj_etat_favoris();
+function majListeFav(action, favName) {
+	if(action == "add") {
+		listeFavoris.appendChild(createFavoriItem(favName));
+	} else if(action == "remove") {
+		listeFavoris.removeChild(listeFavoris.querySelector("#" + favName));
+	} else if(action == "load") {
+		for(var i = 0; i < localStorage.length; i++) {
+			listeFavoris.appendChild(createFavoriItem(localStorage.getItem(localStorage.key(i))));
+		}
+	}
 
-	const cookieName = "fav" + listeFavoris.children.length.toString();
-	setCookie(cookieName, zone_recherche.value);
+	if(listeFavoris.children.length == 0) {
+		infoVide.style.visibility = "visible";
+	} else {
+		infoVide.style.visibility = "hidden";
+	}
+}
 
+function addFav(favToAdd) {
+	localStorage.setItem(favToAdd, favToAdd);
+	majListeFav("add", favToAdd);
 	console.log("Favori ajouté !");
 }
 
-function searchFav(fav) {
-	zone_recherche.value = fav.innerHTML;
-	recherche();
+function removeFav(favToRemove) {
+	localStorage.removeItem(favToRemove);
+	majListeFav("remove", favToRemove);
+	majEtoile();
+	console.log("Favori supprimé !");
 }
 
-function removeFav(fav) {
-	listeFavoris.removeChild(fav.parentNode);
-
-	maj_etat_favoris();
-
-	console.log("Favori supprimé !");
+function searchFav(favToSearch) {
+	zone_recherche.value = favToSearch;
+	searching();
+	majEtoile();
+	recherche();
 }
 
 // pour l'instant sa sert a rien
