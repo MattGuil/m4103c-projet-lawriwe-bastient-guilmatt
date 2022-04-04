@@ -106,15 +106,21 @@ function maj_resultat_ingredients(res) {
 	var obj = JSON.parse(res);
 	// on cherche le div ou on doit injecter la liste des ingedients
 	var div_cible = document.getElementById(obj["drinks"][0].idDrink);
-	for (let i = 1; i < 15; i++){
 
+
+	//boucle d'affichage des ingredients
+	for (let i = 1; i < 15; i++){
+		// affichage d'un ingredient
 		let p = document.createElement("p");
+		p.id = "ingredient";
 		p.innerHTML = obj["drinks"][0][`strIngredient${i}`];
 		div_cible.append(p)
 	}
 	
+	//affiche la recette
 	let p = document.createElement("p");
-	p.innerHTML = obj["drinks"][0].strInstructions;
+	p.id = "recette";
+	p.innerHTML = " how to create : " + obj["drinks"][0].strInstructions;
 	div_cible.append(p)
 }
 
