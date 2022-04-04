@@ -69,13 +69,16 @@ function maj_resultat(res){
 		//la boucle
 		for(let i = 0; i < obj["drinks"].length; i++)
 		{
-
+			//div du cocktail
 		let div = document.createElement("div");
-		div.id = obj["drinks"][i].idDrink;
+		div.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
+		div.className = "cocktail";
 
+		//nom du cocktail
 		let h3 = document.createElement("h3");
 		h3.innerHTML = obj["drinks"][i].strDrink;
 
+		//photo du cocktail
 		let img = document.createElement("img");
 		img.src = obj["drinks"][i].strDrinkThumb;
 
