@@ -79,19 +79,19 @@ function maj_resultat(res){
 		let img = document.createElement("img");
 		img.src = obj["drinks"][i].strDrinkThumb;
 
-		let p = document.createElement("p");
+		let id_boisson = document.createElement("p");
 
-		p.id = "id_cocktail"
-		p.innerHTML = obj["drinks"][i].idDrink;
+		id_boisson.id = "id_cocktail"
+		id_boisson.innerHTML = obj["drinks"][i].idDrink;
 
 		div.append(h3);
-		div.append(p);
+		div.append(id_boisson);
 		div.append(img);
 		div_general.append(div);
 
 		// pour la liste d'ingredients ATTENTION, NON-FONCTIONNEL probleme dans recherche_suplementaire_cocktails ou maj_resultat_ingredients
 		recherche_suplementaire_cocktails(obj["drinks"][i].idDrink)
-
+		// le code continue dans recherche_suplementaire_cocktails puis dans maj_resultat_ingredients dû au callback
 
 
 		bloc_resultats.append(div_general);
@@ -111,16 +111,16 @@ function maj_resultat_ingredients(res) {
 	//boucle d'affichage des ingredients
 	for (let i = 1; i < 15; i++){
 		// affichage d'un ingredient
-		let p = document.createElement("p");
-		p.id = "ingredient";
-		p.innerHTML = obj["drinks"][0][`strIngredient${i}`];
-		div_cible.append(p)
+		let ingredient = document.createElement("p");
+		ingredient.id = "ingredient";
+		ingredient.innerHTML = obj["drinks"][0][`strIngredient${i}`];
+		div_cible.append(ingredient)
 	}
 	
 	//affiche la recette
-	let p = document.createElement("p");
-	p.id = "recette";
-	p.innerHTML = " how to create : " + obj["drinks"][0].strInstructions;
+	let recette = document.createElement("p");
+	recette.id = "recette";
+	recette.innerHTML = " how to create : " + obj["drinks"][0].strInstructions;
 	div_cible.append(p)
 }
 
