@@ -132,6 +132,15 @@ p#explication {
 	content: "\21E8\00A0";
 }
 
+div#resultat {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+div#resultat div.cocktail > div{
+	display: flex;
+}
+
 /* Section de la barre de séparation */
 #section-separation {
 	border-left: 2px dashed var(--main-green);
