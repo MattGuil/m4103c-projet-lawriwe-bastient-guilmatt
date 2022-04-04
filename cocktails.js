@@ -92,7 +92,7 @@ function maj_resultat(res){
 		div.append(img);
 		div_general.append(div);
 
-		// pour la liste d'ingredients ATTENTION, NON-FONCTIONNEL probleme dans recherche_suplementaire_cocktails ou maj_resultat_ingredients
+		// pour la liste d'ingredients
 		recherche_suplementaire_cocktails(obj["drinks"][i].idDrink)
 		// le code continue dans recherche_suplementaire_cocktails puis dans maj_resultat_ingredients dû au callback
 
