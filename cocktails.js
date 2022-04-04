@@ -121,7 +121,8 @@ function maj_resultat_ingredients(res) {
 	let recette = document.createElement("p");
 	recette.id = "recette";
 	recette.innerHTML = " how to create : " + obj["drinks"][0].strInstructions;
-	div_cible.append(p)
+	div_cible.append(recette)
+	
 }
 
 function majEtoile() {
