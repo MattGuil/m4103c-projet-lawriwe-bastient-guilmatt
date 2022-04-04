@@ -30,7 +30,7 @@ function recherche(){
 
 // pour avoir plus d'info sur un cocktail d'on on a déja l'id'
 function recherche_suplementaire_cocktails(id){
-	notIngrePop.classList.remove("show");
+	notIngrePop.classList.remove("show"); 
 	//let request = document.getElementById("id_cocktail").innerHTML;
 	let EncRequest = encodeURIComponent(id);
 	ajax_get_request(maj_resultat_ingredients,"www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+EncRequest);
@@ -96,7 +96,7 @@ function maj_resultat(res){
 		div_general.append(div);
 
 		// pour la liste d'ingredients ATTENTION, NON-FONCTIONNEL probleme dans recherche_suplementaire_cocktails ou maj_resultat_ingredients
-		//recherche_suplementaire_cocktails(obj["drinks"][i].idDrink)
+		recherche_suplementaire_cocktails(obj["drinks"][i].idDrink)
 
 
 
