@@ -113,6 +113,10 @@ function maj_resultat_ingredients(res) {
 	var div_cible = document.getElementById(obj["drinks"][0].idDrink);
 
 	let liste_ingredients = document.createElement("div");
+	let ingredient_title = document.createElement("p");
+	ingredient_title.textContent = "Ingredients:";
+	ingredient_title.style.fontWeight = "bold";
+	liste_ingredients.append(ingredient_title);
 	//boucle d'affichage des ingredients
 	for (let i = 1; i < 15; i++){
 		// affichage d'un ingredient
@@ -128,7 +132,7 @@ function maj_resultat_ingredients(res) {
 	var div_cible_recette = document.getElementById("groupe_" + obj["drinks"][0].idDrink);
 	let recette = document.createElement("p");
 	recette.id = "recette";
-	recette.innerHTML = " how to create : " + obj["drinks"][0].strInstructions;
+	recette.innerHTML = obj["drinks"][0].strInstructions;
 	div_cible_recette.append(recette)
 	
 }
