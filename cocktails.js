@@ -80,6 +80,7 @@ function maj_resultat(res){
 		img.src = obj["drinks"][i].strDrinkThumb;
 
 		let p = document.createElement("p");
+
 		p.id = "id_cocktail"
 		p.innerHTML = obj["drinks"][i].idDrink;
 
@@ -105,10 +106,15 @@ function maj_resultat_ingredients(res) {
 	var obj = JSON.parse(res);
 	// on cherche le div ou on doit injecter la liste des ingedients
 	var div_cible = document.getElementById(obj["drinks"][0].idDrink);
+	for (let i = 1; i < 15; i++){
 
+		let p = document.createElement("p");
+		p.innerHTML = obj["drinks"][0][`strIngredient${i}`];
+		div_cible.append(p)
+	}
+	
 	let p = document.createElement("p");
 	p.innerHTML = obj["drinks"][0].strInstructions;
-
 	div_cible.append(p)
 }
 

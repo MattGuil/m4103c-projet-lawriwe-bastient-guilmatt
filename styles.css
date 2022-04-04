@@ -45,7 +45,9 @@ div>img{
 	width: 300px;
 	height: auto;
 }
-
+p#id_cocktail{
+	display: none;
+}
 
 
 
