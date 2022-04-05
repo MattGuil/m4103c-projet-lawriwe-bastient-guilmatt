@@ -28,7 +28,7 @@
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
-					class="btn_clicable" title="Lancer la recherche" onclick="recherche()">
+					class="btn_clicable" title="Lancer la recherche" onclick="recherche(false)">
 						<!-- Icone provenant de flaticon.com -->
 						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
 					</button>
@@ -56,8 +56,9 @@
 					<!-- s'est ICI que les résultat vont s'afficher (voir fonction maj_résultat) -->
 
 
-
+					
 				</div>
+				<h2 id="true_search" onclick="recherche(true)">print all</h2>
 			</section>
 
 			<!-- Section de séparation (avec la bordure verte) -->
