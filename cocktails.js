@@ -66,7 +66,7 @@ function maj_resultat(res){
 		let div_general = document.createElement("div");
 		div_general.id = "resultat";
 
-		//la boucle
+		//afficher tous les résultat de la recherche
 		for(let i = 0; i < obj["drinks"].length; i++)
 		{
 			//div du cocktail
