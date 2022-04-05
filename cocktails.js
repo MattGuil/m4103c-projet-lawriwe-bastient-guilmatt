@@ -326,7 +326,7 @@ function searchFav(favToSearch) {
 
 
 
-
+//initialise 
 function init(){
 	var data = localStorage.getItem("ingredients");
 	var dataList = '';
@@ -337,7 +337,7 @@ function init(){
 
 	}else{
 
-		dataList = data.split(',')
+		dataList = data.split(',');
 
 		for(let i = 0; i < dataList.length; i++){
 			options += '<option>'+ dataList[i] +'</option>';
@@ -346,7 +346,6 @@ function init(){
 		document.getElementById('cocktail-list').innerHTML = options;
 	}
 	
-
 } 
 
 //cette fonction génère les données nécessaire à l'autocomplétion 
