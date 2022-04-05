@@ -3,10 +3,11 @@
 
 /* Définition des principales couleurs */
 :root {
-	--text-color : #fafafa; /* Texte presque blanc */
-	--background: #34495e; /* Fond bleu foncé */
-	--main-green: rgb(26, 188, 156);
+	--text-color : #DADBBD;
+	--background: #151D3B;
+	--main-green: #6EBF8B;
 	--active-green: rgb(20, 156, 128);
+	--gradient: linear-gradient(#e66465, #9198e5);
 }
 
 * {
@@ -139,10 +140,8 @@ div#resultat {
 }
 
 div#resultat div.cocktail {
-	background-color: rgba(137, 15, 13, .5);
+	background-color: rgba(145, 152, 229, .5);
 	margin: 5px;
-	border-radius: 5px;
-	padding: 10px;
 }
 
 div#resultat div.cocktail h3 {
