@@ -67,9 +67,18 @@ function maj_resultat(res){
 
 		let div_general = document.createElement("div");
 		div_general.id = "resultat";
+		
+		
+		
+		
+		// variable dans le cas ou il y a moin de 10 cocktails
+		let j = 10;
 
+		if(obj["drinks"].length < 10){
+			j = obj["drinks"].length;
+		}
 		//afficher les 10 premiers résultat de la recherche
-		for(let i = 0; i < 10; i++)
+		for(let i = 0; i < j; i++)
 		{
 			// div du cocktail
 			let div = document.createElement("div");
