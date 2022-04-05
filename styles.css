@@ -140,33 +140,52 @@ div#resultat {
 }
 
 div#resultat div.cocktail {
+	overflow: hidden;
 	background-color: rgba(145, 152, 229, .5);
-	display: grid;
-	grid-template-columns: 1fr 1fr;
 	margin: 5px;
 	height: 300px;
 	font-size: .8rem;
 }
 
+div#resultat div.cocktail h3 {
+	text-align: center;
+	background-color: #2d2d2d;
+	margin: 0;
+	padding: 15px;
+}
+
 div#resultat div.cocktail > div {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+div#resultat div.cocktail > div div:first-child {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-}
-
-div#resultat div.cocktail div div {
 	font-style: italic;
 }
 
-div#resultat div.cocktail div div p {
+div#resultat div.cocktail > div div:first-child p {
 	margin: 0;
 }
 
-div#resultat div.cocktail img {
+#divImg {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#divImg img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	transition: all 0.3s ease-out;
+}
+
+div#resultat div.cocktail img:hover {
+	transform: scale(1.1);
 }
 
 #recherche_complete {
