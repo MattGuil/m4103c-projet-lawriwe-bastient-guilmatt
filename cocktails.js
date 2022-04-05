@@ -124,6 +124,7 @@ function maj_resultat_ingredients(res) {
 		let ingredient = document.createElement("p");
 		ingredient.id = "ingredient";
 		ingredient.innerHTML = obj["drinks"][0][`strIngredient${i}`];
+		ingredient.setAttribute("onclick", "searchFav(this.innerHTML)");
 		liste_ingredients.append(ingredient);
 	}
 	

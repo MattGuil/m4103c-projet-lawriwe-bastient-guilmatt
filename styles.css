@@ -169,6 +169,15 @@ div#resultat div.cocktail > p {
 	margin-bottom: 0;
 }
 
+#ingredient:hover {
+	color: var(--main-green);
+}
+
+#ingredient {
+	cursor: pointer;
+}
+
+
 /* Section de la barre de séparation */
 #section-separation {
 	border-left: 2px dashed var(--main-green);
