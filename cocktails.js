@@ -46,10 +46,12 @@ function rab(){
 	// pour clear les résultats avant de d'en afficher de nouveaux
 
 	var a_suprimer = document.getElementById('resultat');
+	var boutton_a_suprimer = document.getElementById('true_search');
 
 	// on vérifie que a_suprimer existe
 	try {
 		a_suprimer.remove();
+		boutton_a_suprimer.remove();
 	} catch(error) {
 		//rien d'arrive si il n'y a rien a suprimer
 	}
@@ -102,8 +104,16 @@ function maj_resultat(res){
 
 			bloc_resultats.append(div_general);
 		}
+		//paragraphe pour ajout du bouton de recherche complete
+		var recherche_compl = document.getElementById('recherche_complete');
+		let button =document.createElement("h2");
+		button.id = "true_search";
+		button.innerHTML = "print all";
+		button.setAttribute("onclick", "recherche(true)");
+		recherche_compl.append(button);
 	} catch(error) {
 		notIngrePop.classList.add("show");
+		rab()
 	}
 }
 
@@ -158,34 +168,9 @@ function maj_resultat_complete(res){
 		}
 	} catch(error) {
 		notIngrePop.classList.add("show");
+		rab()
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
