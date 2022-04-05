@@ -67,9 +67,18 @@ function maj_resultat(res){
 
 		let div_general = document.createElement("div");
 		div_general.id = "resultat";
+		
+		
+		
+		
+		// variable dans le cas ou il y a moin de 10 cocktails
+		let j = 10;
 
+		if(obj["drinks"].length < 10){
+			j = obj["drinks"].length;
+		}
 		//afficher les 10 premiers résultat de la recherche
-		for(let i = 0; i < 10; i++)
+		for(let i = 0; i < j; i++)
 		{
 			// div du cocktail
 			let div = document.createElement("div");
@@ -147,7 +156,7 @@ function maj_resultat_complete(res){
 
 			let h3_ingredients = document.createElement("div");
 			h3_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
-			h3_ingredients.append(img);
+			h3_ingredients.append(h3);
 
 			let id_boisson = document.createElement("p");
 
