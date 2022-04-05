@@ -3,10 +3,11 @@
 
 /* Définition des principales couleurs */
 :root {
-	--text-color : #fafafa; /* Texte presque blanc */
-	--background: #34495e; /* Fond bleu foncé */
-	--main-green: rgb(26, 188, 156);
+	--text-color : #DADBBD;
+	--background: #151D3B;
+	--main-green: #6EBF8B;
 	--active-green: rgb(20, 156, 128);
+	--gradient: linear-gradient(#e66465, #9198e5);
 }
 
 * {
@@ -139,34 +140,59 @@ div#resultat {
 }
 
 div#resultat div.cocktail {
-	background-color: rgba(137, 15, 13, .5);
+	background-color: rgba(145, 152, 229, .5);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	margin: 5px;
-	border-radius: 5px;
-	padding: 10px;
+	height: 300px;
+	font-size: .8rem;
 }
 
-div#resultat div.cocktail h3 {
-	margin-top: 0;
-}
-
-div#resultat div.cocktail > div{
+div#resultat div.cocktail > div {
 	display: flex;
-	justify-content: space-around;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+div#resultat div.cocktail div div {
 	font-style: italic;
 }
 
-div#resultat div.cocktail > div p {
+div#resultat div.cocktail div div p {
 	margin: 0;
 }
 
 div#resultat div.cocktail img {
-	width: 50%;
-	height: 50%;
-	border-radius: 5px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
-div#resultat div.cocktail > p {
-	margin-bottom: 0;
+#recherche_complete {
+	text-align: center;
+	font-size: .75rem;
+}
+
+#ingredient:hover {
+	color: var(--main-green);
+}
+
+#ingredient {
+	cursor: pointer;
+}
+
+
+#true_search:hover {
+	color: var(--main-green);
+}
+
+#true_search {
+	cursor: pointer;
+	background-color: rgba(145, 152, 229, .5);
+	margin: 5px;
+	border-radius: 5px;
+	padding: 10px;
 }
 
 /* Section de la barre de séparation */
