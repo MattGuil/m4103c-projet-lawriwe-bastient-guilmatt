@@ -93,18 +93,18 @@ function maj_resultat(res){
 			let img = document.createElement("img");
 			img.src = obj["drinks"][i].strDrinkThumb;
 
-			let img_ingredients = document.createElement("div");
-			img_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
-			img_ingredients.append(img);
+			let h3_ingredients = document.createElement("div");
+			h3_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
+			h3_ingredients.append(h3);
 
 			let id_boisson = document.createElement("p");
 
 			id_boisson.id = "id_cocktail"
 			id_boisson.innerHTML = obj["drinks"][i].idDrink;
 
-			div.append(h3);
+			div.append(h3_ingredients);
 			div.append(id_boisson);
-			div.append(img_ingredients);
+			div.append(img);
 			div_general.append(div);
 
 			// pour la liste d'ingredients
