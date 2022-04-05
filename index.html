@@ -6,13 +6,13 @@
 		<link rel="shortcut icon" type="image/x-icon" href="favicon-js.ico">
 		<link rel="stylesheet" href="styles.css">
 	</head>
-	<body>
+	<body onload="init()">
 		<header>
 			<h1>Recherche de Cocktails</h1>
 
 			<p id="explication">Cette page permet de rechercher des cocktails via l'API publique de <a href="https://www.thecocktaildb.com/" target="_blank">thecocktaildb.com</a>.<br>
 			Saisir le nom d'un ingrédient pour rechercher les cocktails correspondants, et enregistrer vos recherches favorites pour les retrouver facilement.</p>
-			<p class="remarque">Précision : Les ingrédient sont à écrire en anglais je vous prie !</p>
+			<p class="remarque">Précision : Les ingrédients sont à écrire en anglais je vous prie !</p>
 		
 		</header>
 		<hr>
@@ -22,9 +22,9 @@
 			<section id="section-recherche">
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input id="zone_recherche" type="text" placeholder="Que cherchez-vous ?" onkeyup="searching()"/>
+					<input id="zone_recherche" type="text" placeholder="Que cherchez-vous ?" onkeyup="searching()" list="cocktail-list"/>
 					<p class="popuptext" id="NotIngre" >Cette ingrédient n'est dans aucune cocktail</p>
-
+					
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
 					class="btn_clicable" title="Lancer la recherche" onclick="recherche()">
@@ -43,6 +43,11 @@
 						<!-- (Icones provenant de flaticon.com) -->
 					</button>
 				</div>
+
+				<datalist id="cocktail-list">
+					
+				</datalist>
+
 
 				<!-- Résultats de recherche -->
 				<div id="bloc-gif-attente">

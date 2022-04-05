@@ -229,7 +229,57 @@ function searchFav(favToSearch) {
 	recherche();
 }
 
-// pour l'instant sa sert a rien
+
+
+//cette fonction génère les données nécessaire à l'autocomplétion 
+//sorte de "init"
+function init(){
+	var dataList = localStorage.getItem("ingredients");
+	var options ='';
+		
+	if(dataList === null){
+		ajax_get_request(geneList,"https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list");
+
+	}else{
+		for(let i = 0; i < dataList.length; i++){
+			options += '<option>'+ dataList[i] +'</option>';
+		}
+	
+		document.getElementById('cocktail-list').innerHTML = options;
+	}
+	
+	
+
+
+}
+
+function geneList(list){
+	var objList = JSON.parse(list);
+	var generedList = [];
+	var options ='';
+	
+
+	for(let i = 0; i < 100;i++){
+		generedList[i] = objList["drinks"][i].strIngredient1;
+	}
+
+	localStorage.setItem("ingredients", generedList);
+
+	for(let i = 0; i < generedList.length; i++){
+		options += '<option>'+ generedList[i] +'</option>';
+	}
+
+	document.getElementById('cocktail-list').innerHTML = options;
+	
+	
+}
+
+
+
+
+
+
+
 function ajax_get_request(callback, url, async = true) {
 	// Instanciation d'un objet XHR
 	var xhr = new XMLHttpRequest();
