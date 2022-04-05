@@ -157,7 +157,7 @@ function maj_resultat_complete(res){
 
 			let h3_ingredients = document.createElement("div");
 			h3_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
-			h3_ingredients.append(img);
+			h3_ingredients.append(h3);
 
 			let id_boisson = document.createElement("p");
 
