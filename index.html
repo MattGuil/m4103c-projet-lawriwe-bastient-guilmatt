@@ -12,8 +12,8 @@
 
 			<p id="explication">Cette page permet de rechercher des cocktails via l'API publique de <a href="https://www.thecocktaildb.com/" target="_blank">thecocktaildb.com</a>.<br>
 			Saisir le nom d'un ingrédient pour rechercher les cocktails correspondants, et enregistrer vos recherches favorites pour les retrouver facilement.</p>
-			<p class="remarque">Précision : Les ingrédients sont à écrire en anglais je vous prie !</p>
-			<p class="remarque">request exemple : vodka</p>
+			<p class="remarque">Précision : Écrire le nom des ingrédients en anglais.</p>
+			<p class="remarque">Exemple : tapez "vodka" dans la barre de recherche</p>
 		
 		</header>
 		<hr>
@@ -24,7 +24,7 @@
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
 					<input id="zone_recherche" type="text" placeholder="Que cherchez-vous ?" onkeyup="searching()" list="cocktail-list"/>
-					<p class="popuptext" id="NotIngre" >Cette ingrédient n'est dans aucune cocktail</p>
+					<p class="popuptext" id="NotIngre" >Cette ingrédient n'est dans aucun cocktail</p>
 					
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
@@ -63,6 +63,7 @@
 
 					
 				</div>
+				<p class="attention">L'abus d'alcool est dangereux pour la santé. A consommer avec modération.</p>
 				<div id="recherche_complete"></div> <!--s'est ici que le boutton pour la recherche complete s'affiche-->
 			</section>
 
