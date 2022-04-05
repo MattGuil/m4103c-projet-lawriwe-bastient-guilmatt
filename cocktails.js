@@ -101,17 +101,25 @@ function maj_resultat(res){
 			let img = document.createElement("img");
 			img.src = obj["drinks"][i].strDrinkThumb;
 
-			let h3_ingredients = document.createElement("div");
-			h3_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
-			h3_ingredients.append(h3);
+			let divImg = document.createElement("div");
+			divImg.id = "divImg";
+
+			divImg.append(img);
+
+			let ingredients = document.createElement("div");
+			ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
 
 			let id_boisson = document.createElement("p");
 			id_boisson.id = "id_cocktail"
 			id_boisson.innerHTML = obj["drinks"][i].idDrink;
 
-			div.append(h3_ingredients);
+			let ingredient_img = document.createElement("div");
+			ingredient_img.append(ingredients);
+			ingredient_img.append(divImg);
+
+			div.append(h3);
 			div.append(id_boisson);
-			div.append(img);
+			div.append(ingredient_img)
 			div_general.append(div);
 
 			// pour la liste d'ingredients
@@ -155,18 +163,25 @@ function maj_resultat_complete(res){
 			let img = document.createElement("img");
 			img.src = obj["drinks"][i].strDrinkThumb;
 
-			let h3_ingredients = document.createElement("div");
-			h3_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
-			h3_ingredients.append(h3);
+			let divImg = document.createElement("div");
+			divImg.id = "divImg";
+
+			divImg.append(img);
+
+			let ingredients = document.createElement("div");
+			ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
 
 			let id_boisson = document.createElement("p");
-
 			id_boisson.id = "id_cocktail"
 			id_boisson.innerHTML = obj["drinks"][i].idDrink;
 
-			div.append(h3_ingredients);
+			let ingredient_img = document.createElement("div");
+			ingredient_img.append(ingredients);
+			ingredient_img.append(divImg);
+
+			div.append(h3);
 			div.append(id_boisson);
-			div.append(img);
+			div.append(ingredient_img)
 			div_general.append(div);
 
 			// pour la liste d'ingredients
