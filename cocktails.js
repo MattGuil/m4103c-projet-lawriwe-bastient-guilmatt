@@ -58,7 +58,7 @@ function rab(){
 }
 
 function maj_resultat(res){
-	try {
+	//try {
 		var obj = JSON.parse(res);
 		var bloc_resultats = document.getElementById('bloc_resultats');
  
@@ -84,18 +84,17 @@ function maj_resultat(res){
 			let img = document.createElement("img");
 			img.src = obj["drinks"][i].strDrinkThumb;
 
-			let img_ingredients = document.createElement("div");
-			img_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
-			img_ingredients.append(img);
+			let h3_ingredients = document.createElement("div");
+			h3_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
+			h3_ingredients.append(h3);
 
 			let id_boisson = document.createElement("p");
-
 			id_boisson.id = "id_cocktail"
 			id_boisson.innerHTML = obj["drinks"][i].idDrink;
 
-			div.append(h3);
+			div.append(h3_ingredients);
 			div.append(id_boisson);
-			div.append(img_ingredients);
+			div.append(img);
 			div_general.append(div);
 
 			// pour la liste d'ingredients
@@ -111,10 +110,10 @@ function maj_resultat(res){
 		button.innerHTML = "print all";
 		button.setAttribute("onclick", "recherche(true)");
 		recherche_compl.append(button);
-	} catch(error) {
+	/*} catch(error) {
 		notIngrePop.classList.add("show");
 		rab()
-	}
+	}*/
 }
 
 //quasiment la meme que maj_resultat mais affiche TOUS les cocktails
@@ -202,7 +201,7 @@ function maj_resultat_ingredients(res) {
 	let recette = document.createElement("p");
 	recette.id = "recette";
 	recette.innerHTML = obj["drinks"][0].strInstructions;
-	div_cible_recette.append(recette)
+	//div_cible_recette.append(recette);
 	
 }
 
