@@ -58,7 +58,7 @@ function rab(){
 }
 
 function maj_resultat(res){
-	//try {
+	try {
 		var obj = JSON.parse(res);
 		var bloc_resultats = document.getElementById('bloc_resultats');
  
@@ -74,8 +74,16 @@ function maj_resultat(res){
 		// variable dans le cas ou il y a moin de 10 cocktails
 		let j = 10;
 
-		if(obj["drinks"].length < 10){
+		if(obj["drinks"].length <= 10){
 			j = obj["drinks"].length;
+		} else {
+			//paragraphe pour ajout du bouton de recherche complete (si nb cocktails > 10)
+			var recherche_compl = document.getElementById('recherche_complete');
+			let button =document.createElement("h2");
+			button.id = "true_search";
+			button.innerHTML = "print all";
+			button.setAttribute("onclick", "recherche(true)");
+			recherche_compl.append(button);
 		}
 		//afficher les 10 premiers résultat de la recherche
 		for(let i = 0; i < j; i++)
@@ -120,17 +128,10 @@ function maj_resultat(res){
 
 			bloc_resultats.append(div_general);
 		}
-		//paragraphe pour ajout du bouton de recherche complete
-		var recherche_compl = document.getElementById('recherche_complete');
-		let button =document.createElement("h2");
-		button.id = "true_search";
-		button.innerHTML = "print all";
-		button.setAttribute("onclick", "recherche(true)");
-		recherche_compl.append(button);
-	/*} catch(error) {
+	} catch(error) {
 		notIngrePop.classList.add("show");
 		rab()
-	}*/
+	}
 }
 
 //quasiment la meme que maj_resultat mais affiche TOUS les cocktails
@@ -320,7 +321,57 @@ function searchFav(favToSearch) {
 	recherche();
 }
 
-// pour l'instant sa sert a rien
+
+
+//cette fonction génère les données nécessaire à l'autocomplétion 
+//sorte de "init"
+function init(){
+	var dataList = localStorage.getItem("ingredients");
+	var options ='';
+		
+	if(dataList === null){
+		ajax_get_request(geneList,"https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list");
+
+	}else{
+		for(let i = 0; i < dataList.length; i++){
+			options += '<option>'+ dataList[i] +'</option>';
+		}
+	
+		document.getElementById('cocktail-list').innerHTML = options;
+	}
+	
+	
+
+
+}
+
+function geneList(list){
+	var objList = JSON.parse(list);
+	var generedList = [];
+	var options ='';
+	
+
+	for(let i = 0; i < 100;i++){
+		generedList[i] = objList["drinks"][i].strIngredient1;
+	}
+
+	localStorage.setItem("ingredients", generedList);
+
+	for(let i = 0; i < generedList.length; i++){
+		options += '<option>'+ generedList[i] +'</option>';
+	}
+
+	document.getElementById('cocktail-list').innerHTML = options;
+	
+	
+}
+
+
+
+
+
+
+
 function ajax_get_request(callback, url, async = true) {
 	// Instanciation d'un objet XHR
 	var xhr = new XMLHttpRequest();
