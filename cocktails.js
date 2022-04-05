@@ -275,7 +275,10 @@ function majListeFav(action, favName) {
 		listeFavoris.removeChild(listeFavoris.querySelector("#" + favName));
 	} else if(action == "load") {
 		for(var i = 0; i < localStorage.length; i++) {
-			listeFavoris.appendChild(createFavoriItem(localStorage.getItem(localStorage.key(i))));
+			if(localStorage.key(i) != "ingredients"){
+				listeFavoris.appendChild(createFavoriItem(localStorage.getItem(localStorage.key(i))));
+			}
+			
 		}
 	}
 
@@ -308,16 +311,19 @@ function searchFav(favToSearch) {
 
 
 
-//cette fonction génère les données nécessaire à l'autocomplétion 
-//sorte de "init"
+
 function init(){
-	var dataList = localStorage.getItem("ingredients");
+	var data = localStorage.getItem("ingredients");
+	var dataList = '';
 	var options ='';
 		
-	if(dataList === null){
+	if(data === null){
 		ajax_get_request(geneList,"https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list");
 
 	}else{
+
+		dataList = data.split(',')
+
 		for(let i = 0; i < dataList.length; i++){
 			options += '<option>'+ dataList[i] +'</option>';
 		}
@@ -325,11 +331,10 @@ function init(){
 		document.getElementById('cocktail-list').innerHTML = options;
 	}
 	
-	
 
+} 
 
-}
-
+//cette fonction génère les données nécessaire à l'autocomplétion 
 function geneList(list){
 	var objList = JSON.parse(list);
 	var generedList = [];
