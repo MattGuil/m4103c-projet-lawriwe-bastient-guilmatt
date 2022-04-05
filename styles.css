@@ -162,7 +162,7 @@ div#resultat div.cocktail > div {
 div#resultat div.cocktail > div div:first-child {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	margin-top: 5%;
 	align-items: center;
 	font-style: italic;
 }
