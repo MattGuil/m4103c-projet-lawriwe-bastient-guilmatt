@@ -15,7 +15,7 @@
 
 body {
 	background-color: var(--background);
-	font: 14pt Roboto, Arial, sans-serif;
+	font: 14pt Poppins, Roboto, Arial, sans-serif;
 	margin: 0;
 	padding: 0;
 	width: 90%;
@@ -130,6 +130,43 @@ p#explication {
 	/* Affichage d'une flèche devant chaque résultat
 		(Cf. https://unicode-table.com/fr/21E8/ ) */
 	content: "\21E8\00A0";
+}
+
+div#resultat {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	padding-top: 2.5px;
+}
+
+div#resultat div.cocktail {
+	background-color: rgba(137, 15, 13, .5);
+	margin: 5px;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+div#resultat div.cocktail h3 {
+	margin-top: 0;
+}
+
+div#resultat div.cocktail > div{
+	display: flex;
+	justify-content: space-around;
+	font-style: italic;
+}
+
+div#resultat div.cocktail > div p {
+	margin: 0;
+}
+
+div#resultat div.cocktail img {
+	width: 50%;
+	height: 50%;
+	border-radius: 5px;
+}
+
+div#resultat div.cocktail > p {
+	margin-bottom: 0;
 }
 
 /* Section de la barre de séparation */

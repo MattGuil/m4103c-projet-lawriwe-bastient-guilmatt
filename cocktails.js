@@ -69,35 +69,38 @@ function maj_resultat(res){
 		//afficher tous les résultat de la recherche
 		for(let i = 0; i < obj["drinks"].length; i++)
 		{
-			//div du cocktail
-		let div = document.createElement("div");
-		div.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
-		div.className = "cocktail";
+			// div du cocktail
+			let div = document.createElement("div");
+			div.id = "groupe_" + obj["drinks"][i].idDrink; //id utile pour afficher le recette (ATTENTION : ciblage différent des ingrédients)
+			div.className = "cocktail";
 
-		//nom du cocktail
-		let h3 = document.createElement("h3");
-		h3.innerHTML = obj["drinks"][i].strDrink;
+			// nom du cocktail
+			let h3 = document.createElement("h3");
+			h3.innerHTML = obj["drinks"][i].strDrink;
 
-		//photo du cocktail
-		let img = document.createElement("img");
-		img.src = obj["drinks"][i].strDrinkThumb;
+			// photo du cocktail
+			let img = document.createElement("img");
+			img.src = obj["drinks"][i].strDrinkThumb;
 
-		let id_boisson = document.createElement("p");
+			let img_ingredients = document.createElement("div");
+			img_ingredients.id = obj["drinks"][i].idDrink; //id utile pour la recherche des ingrédients par la suite
+			img_ingredients.append(img);
 
-		id_boisson.id = "id_cocktail"
-		id_boisson.innerHTML = obj["drinks"][i].idDrink;
+			let id_boisson = document.createElement("p");
 
-		div.append(h3);
-		div.append(id_boisson);
-		div.append(img);
-		div_general.append(div);
+			id_boisson.id = "id_cocktail"
+			id_boisson.innerHTML = obj["drinks"][i].idDrink;
 
-		// pour la liste d'ingredients
-		recherche_suplementaire_cocktails(obj["drinks"][i].idDrink)
-		// le code continue dans recherche_suplementaire_cocktails puis dans maj_resultat_ingredients dû au callback
+			div.append(h3);
+			div.append(id_boisson);
+			div.append(img_ingredients);
+			div_general.append(div);
 
+			// pour la liste d'ingredients
+			recherche_suplementaire_cocktails(obj["drinks"][i].idDrink)
+			// le code continue dans recherche_suplementaire_cocktails puis dans maj_resultat_ingredients dû au callback
 
-		bloc_resultats.append(div_general);
+			bloc_resultats.append(div_general);
 		}
 	} catch(error) {
 		notIngrePop.classList.add("show");
@@ -110,21 +113,28 @@ function maj_resultat_ingredients(res) {
 	// on cherche le div ou on doit injecter la liste des ingedients
 	var div_cible = document.getElementById(obj["drinks"][0].idDrink);
 
-
+	let liste_ingredients = document.createElement("div");
+	let ingredient_title = document.createElement("p");
+	ingredient_title.textContent = "Ingredients:";
+	ingredient_title.style.fontWeight = "bold";
+	liste_ingredients.append(ingredient_title);
 	//boucle d'affichage des ingredients
 	for (let i = 1; i < 15; i++){
 		// affichage d'un ingredient
 		let ingredient = document.createElement("p");
 		ingredient.id = "ingredient";
 		ingredient.innerHTML = obj["drinks"][0][`strIngredient${i}`];
-		div_cible.append(ingredient)
+		liste_ingredients.append(ingredient);
 	}
 	
+	div_cible.append(liste_ingredients);
+
 	//affiche la recette
+	var div_cible_recette = document.getElementById("groupe_" + obj["drinks"][0].idDrink);
 	let recette = document.createElement("p");
 	recette.id = "recette";
-	recette.innerHTML = " how to create : " + obj["drinks"][0].strInstructions;
-	div_cible.append(recette)
+	recette.innerHTML = obj["drinks"][0].strInstructions;
+	div_cible_recette.append(recette)
 	
 }
 
