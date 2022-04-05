@@ -168,6 +168,27 @@ div#resultat div.cocktail > p {
 	margin-bottom: 0;
 }
 
+#ingredient:hover {
+	color: var(--main-green);
+}
+
+#ingredient {
+	cursor: pointer;
+}
+
+
+#true_search:hover {
+	color: var(--main-green);
+}
+
+#true_search {
+	cursor: pointer;
+	background-color: rgba(137, 15, 13, .5);
+	margin: 5px;
+	border-radius: 5px;
+	padding: 10px;
+}
+
 /* Section de la barre de séparation */
 #section-separation {
 	border-left: 2px dashed var(--main-green);

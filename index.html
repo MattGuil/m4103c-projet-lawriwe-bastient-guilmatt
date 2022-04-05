@@ -13,6 +13,7 @@
 			<p id="explication">Cette page permet de rechercher des cocktails via l'API publique de <a href="https://www.thecocktaildb.com/" target="_blank">thecocktaildb.com</a>.<br>
 			Saisir le nom d'un ingrédient pour rechercher les cocktails correspondants, et enregistrer vos recherches favorites pour les retrouver facilement.</p>
 			<p class="remarque">Précision : Les ingrédient sont à écrire en anglais je vous prie !</p>
+			<p class="remarque">request exemple : vodka</p>
 		
 		</header>
 		<hr>
@@ -27,7 +28,7 @@
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
-					class="btn_clicable" title="Lancer la recherche" onclick="recherche()">
+					class="btn_clicable" title="Lancer la recherche" onclick="recherche(false)">
 						<!-- Icone provenant de flaticon.com -->
 						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
 					</button>
@@ -55,8 +56,9 @@
 					<!-- s'est ICI que les résultat vont s'afficher (voir fonction maj_résultat) -->
 
 
-
+					
 				</div>
+				<div id="recherche_complete"></div> <!--s'est ici que le boutton pour la recherche complete s'affiche-->
 			</section>
 
 			<!-- Section de séparation (avec la bordure verte) -->
